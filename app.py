@@ -38,6 +38,12 @@ def callback():
     return 'OK'
 
 
+@app.route("/notify", methods=['POST'])
+def piyo():
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
+    return 'OK'
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     line_bot_api.reply_message(
